@@ -1,0 +1,16 @@
+sys
+_ModuleWrapper
+_QtWrapper
+DEBUG
+CompilerCreatorPolicy
+as_string
+_CustomWidgetLoader
+logger
+_QtWidgetsWrapper
+QtWidgets
+logging
+write_code
+QtGui
+Literal
+_QtGuiWrapper
+strict_getattr

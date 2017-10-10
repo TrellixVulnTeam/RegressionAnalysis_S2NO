@@ -1,0 +1,9 @@
+_QtWrapper
+_QtGuiWrapper
+_ModuleWrapper
+LoaderCreatorPolicy
+QtWidgets
+_CustomWidgetLoader
+QtGui
+_QtWidgetsWrapper
+sys

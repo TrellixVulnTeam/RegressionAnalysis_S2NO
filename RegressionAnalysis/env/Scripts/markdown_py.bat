@@ -1,0 +1,1 @@
+@"D:\VisualStudio2017\Projects\Regression\Regression\env\Scripts\python.exe" "D:\VisualStudio2017\Projects\Regression\Regression\env\Scripts\markdown_py" %*

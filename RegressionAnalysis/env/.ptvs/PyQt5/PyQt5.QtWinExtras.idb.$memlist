@@ -1,0 +1,14 @@
+QWinJumpList
+QWinJumpListCategory
+QWinJumpListItem
+QWinTaskbarButton
+QWinTaskbarProgress
+QWinThumbnailToolBar
+QWinThumbnailToolButton
+QtWin
+__doc__
+__file__
+__loader__
+__name__
+__package__
+__spec__
