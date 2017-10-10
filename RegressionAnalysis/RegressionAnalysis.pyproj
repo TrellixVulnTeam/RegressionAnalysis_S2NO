@@ -4,7 +4,8 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>ece1d3a0-c886-4e38-a1ee-021c3eebd959</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>src\Regression.py</StartupFile>
+    <StartupFile>
+    </StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
