@@ -1,38 +1,17 @@
 import numpy as np
-
-
-num_points = 50
-degree = 6
-hyper = 0
-learning_rate = 0.001
-
 import matplotlib.pyplot as plt
 import tensorflow as tf
 
-def regression(argx_data, argy_data, degree_hat, paper, option):
-    #x init
-    x_data = [[0 for col in range(num_points)] for row in range(degree_hat)]
-    for i in range(num_points):
-        x = argx_data[i]
-    
-        for j in range(degree_hat):
-            x_data[j][i] = pow(x,j+1)
+def polynomial_regression(x_data, y_data, degree_level, paper, option):
 
-    #y init
-    y_data = argy_data
+    poly_x_data = [[pow(x, degree) for x in x_data] for degree in range(1, degree_level+1)]
+    weights = [tf.Variable(tf.ones([1])) for degree in range(1, degree_level+1)]
 
-    #w init
-    weights = []
-    for i in range(degree_hat):
-        weights.append(tf.Variable(tf.ones([1])))
-    weights = tf.transpose(weights)
+    return regression(y_data, poly_x_data, tf.transpose(weights), paper=paper, option=option)
 
+def regression(y_data, x_data, weights, paper, option):
 
-
-        
-
-
-    y_hat = tf.matmul(weights, x_data[0:degree_hat])
+    y_hat = tf.matmul(weights, x_data)
 
     cost = tf.square(y_hat - y_data)
 
@@ -41,7 +20,7 @@ def regression(argx_data, argy_data, degree_hat, paper, option):
     loss = tf.reduce_mean(cost + regularization)
 
 
-    optimizer = tf.train.GradientDescentOptimizer(learning_rate)
+    optimizer = tf.train.GradientDescentOptimizer(option["learning_rate"])
     train = optimizer.minimize(loss)
 
 
@@ -50,33 +29,8 @@ def regression(argx_data, argy_data, degree_hat, paper, option):
     sess.run(init)
 
 
-    for step in range(500):
+    for step in range(option["steps"]):
         sess.run(train) 
 
 
-
-
-
-
-
-        
-    # draw
-
-    draw_x_data = [[0 for col in range(100)] for row in range(degree_hat)]
-    draw_x_data[0] = np.linspace(-10,10,100)
-
-
-    for i in range(100):
-        for j in range(degree_hat-1):
-            draw_x_data[j+1][i] = pow(draw_x_data[0][i],j+2)
-
-    draw_y_data = np.dot(sess.run(weights),draw_x_data)
-
-
-
-    paper.plot(draw_x_data[0], np.transpose(draw_y_data))
-    print(sess.run(weights))
-
-
-
-
+    return sess.run(weights)
