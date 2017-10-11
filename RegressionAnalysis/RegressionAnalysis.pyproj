@@ -36,7 +36,6 @@
     <Folder Include="src\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="src\data_factory.py" />
     <Compile Include="src\gui.py" />
     <Compile Include="src\layout.py" />
     <Compile Include="src\Regression.py" />

@@ -2,15 +2,16 @@ import numpy as np
 import matplotlib.pyplot as plt
 import tensorflow as tf
 
-def polynomial_regression(x_data, y_data, degree_level, paper, option):
+def polynomial_regression(y_data, x_data, order_level, option):
+    # Extend data to enter polynomial variable.
+    poly_x_data = [[pow(x, order) for x in x_data] for order in range(0, order_level)]
+    weights = [tf.Variable(tf.ones([1])) for order in range(0, order_level)]
 
-    poly_x_data = [[pow(x, degree) for x in x_data] for degree in range(1, degree_level+1)]
-    weights = [tf.Variable(tf.ones([1])) for degree in range(1, degree_level+1)]
+    return regression(y_data, poly_x_data, tf.transpose(weights), option=option)
 
-    return regression(y_data, poly_x_data, tf.transpose(weights), paper=paper, option=option)
-
-def regression(y_data, x_data, weights, paper, option):
-
+## Regression using tensorflow library
+def regression(y_data, x_data, weights, option):
+    
     y_hat = tf.matmul(weights, x_data)
 
     cost = tf.square(y_hat - y_data)
