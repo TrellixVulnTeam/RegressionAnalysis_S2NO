@@ -6,7 +6,7 @@ def polynomial_regression(y_data, x_data, order_level, option):
     # Extend data to enter polynomial variable.
     poly_x_data = [[pow(x, order) for x in x_data] for order in range(0, order_level+1)]
     weights = [tf.Variable(tf.ones([1])) for order in range(0, order_level+1)]
-
+    
     return regression(y_data, poly_x_data, tf.transpose(weights), option=option)
 
 ## Regression using tensorflow library
@@ -14,7 +14,7 @@ def regression(y_data, x_data, weights, option):
     
     y_hat = tf.matmul(weights, x_data)
 
-    cost = tf.square(y_hat - y_data)
+    loss = tf.square(y_hat - y_data)
 
     if option["regularization"] is "ridge":
         regularization = tf.reduce_mean(tf.square(weights) * option["hyper"])
@@ -23,11 +23,11 @@ def regression(y_data, x_data, weights, option):
     elif option["regularization"] is "elastic_net":
         regularization = tf.reduce_mean(tf.square(weights) * option["hyper"] + tf.abs(weights) * option["hyper2"])
 
-    loss = tf.reduce_mean(cost + regularization)
+    cost = tf.reduce_mean(loss + regularization)
 
 
     optimizer = tf.train.GradientDescentOptimizer(option["learning_rate"])
-    train = optimizer.minimize(loss)
+    train = optimizer.minimize(cost)
 
 
     init = tf.global_variables_initializer()
@@ -38,4 +38,4 @@ def regression(y_data, x_data, weights, option):
     for step in range(option["steps"]):
         sess.run(train) 
 
-    return sess.run(weights), np.mean(sess.run(cost))
+    return sess.run(weights), np.mean(sess.run(loss))

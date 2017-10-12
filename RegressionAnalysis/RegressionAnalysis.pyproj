@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>ece1d3a0-c886-4e38-a1ee-021c3eebd959</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>src\run2.py</StartupFile>
+    <StartupFile>src\python\run2.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -34,15 +34,13 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\" />
+    <Folder Include="src\python\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="src\gui.py" />
-    <Compile Include="src\layout.py" />
-    <Compile Include="src\Regression.py" />
-    <Compile Include="src\run2.py" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="src\layout.ui" />
+    <Compile Include="src\python\gui.py" />
+    <Compile Include="src\python\layout.py" />
+    <Compile Include="src\python\regression.py" />
+    <Compile Include="src\python\run2.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

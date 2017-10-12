@@ -1,11 +1,12 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import *
 from layout import Ui_MainWindow
-from Regression import regression, polynomial_regression
+from regression import regression, polynomial_regression
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 import matplotlib.pyplot as plt
 import numpy as np
 import math
+import webbrowser
 
 
 class XMainWindow(QMainWindow, Ui_MainWindow):
@@ -130,12 +131,12 @@ class XMainWindow(QMainWindow, Ui_MainWindow):
         self.draw()
 
     def dialChanged_Event(self):
-        self.dialLabel.setText(str(self.dial.value()))
-        self.option["hyper"] = self.dial.value()
+        self.dialLabel.setText(str(self.dial.value()/10))
+        self.option["hyper"] = self.dial.value()/10
 
     def dial2Changed_Event(self):
-        self.dialLabel2.setText(str(self.dial_2.value()))
-        self.option["hyper2"] = self.dial_2.value()
+        self.dialLabel2.setText(str(self.dial_2.value()/10))
+        self.option["hyper2"] = self.dial_2.value()/10
 
     def comboBoxChanged_Event(self, item):
         print(self.result[item][1])
